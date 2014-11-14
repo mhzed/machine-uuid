@@ -1,0 +1,24 @@
+{
+  "name": "machine-uuid",
+  "version": "1.0.0",
+  "description": "get machine's uuid",
+  "main": "index.js",
+  "bin": {
+    "machineuuid" : "bin/machineId.js"
+  },
+  "scripts": {
+    "test": "nodeunit test/test.js"
+  },
+  "keywords": [
+    "get",
+    "machine",
+    "hardware",
+    "unique",
+    "id"
+  ],
+  "author": "mhzed",
+  "license": "ISC",
+  "dependencies": {
+    "node-uuid": "^1.4.1"
+  }
+}
