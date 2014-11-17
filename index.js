@@ -73,7 +73,9 @@
   };
 
   defaultUuid = function(cb) {
-    var f, id;
+    var f, fs, id, path;
+    path = require("path");
+    fs = require("fs");
     f = path.resolve(__dirname, '.nodemid');
     if (fs.existsSync(f)) {
       return cb(fs.readFileSync(f));

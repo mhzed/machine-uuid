@@ -40,6 +40,8 @@ winUuid = (cb)->
     cb(new Error("No match"))
 
 defaultUuid = (cb)->
+  path = require "path"
+  fs = require "fs"
   f = path.resolve(__dirname, '.nodemid')
   if fs.existsSync(f)
     cb(fs.readFileSync(f))
