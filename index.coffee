@@ -13,7 +13,8 @@ module.exports = (cb)->
   platFormSpecific = {
     'darwin' : osxUuid,
     'win32'  : winUuid,
-    'win64'  : winUuid
+    'win64'  : winUuid,
+    'linux'  : linuxUuid
   }
   platformGetUuid = platFormSpecific[os.platform()]
   if platformGetUuid
@@ -23,6 +24,14 @@ module.exports = (cb)->
       else
         cb(uuid = id)
   else
+    defaultUuid cb
+
+linuxUuid = (cb)->
+  try
+    fs = require("fs")
+    uuid = fs.readFileSync("/var/lib/dbus/machine-id").toString()
+    setImmediate ()->cb(null, uuid)
+  catch e
     defaultUuid cb
 
 osxUuid = (cb)->
@@ -44,7 +53,7 @@ defaultUuid = (cb)->
   fs = require "fs"
   f = path.resolve(__dirname, '.nodemid')
   if fs.existsSync(f)
-    cb(fs.readFileSync(f))
+    cb(fs.readFileSync(f).toString())
   else
     id = require('node-uuid').v1()
     fs.writeFileSync(f, id);
