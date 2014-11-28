@@ -16,7 +16,8 @@
     "unique",
     "id"
   ],
-  "author": "mhzed",
+  "repository" : "https://github.com/mhzed/machine-uuid",
+  "author": "mhzed <mhzedd@gmail.com>",
   "license": "ISC",
   "dependencies": {
     "node-uuid": "^1.4.1"
