@@ -43,9 +43,8 @@
     var e, fs;
     try {
       fs = require("fs");
-      uuid = fs.readFileSync("/var/lib/dbus/machine-id").toString();
-      return setImmediate(function() {
-        return cb(null, uuid);
+      return uuid = fs.readFile("/var/lib/dbus/machine-id", function(err, content) {
+        return cb(err, content ? content.toString() : void 0);
       });
     } catch (_error) {
       e = _error;

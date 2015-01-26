@@ -29,8 +29,8 @@ module.exports = (cb)->
 linuxUuid = (cb)->
   try
     fs = require("fs")
-    uuid = fs.readFileSync("/var/lib/dbus/machine-id").toString()
-    setImmediate ()->cb(null, uuid)
+    uuid = fs.readFile "/var/lib/dbus/machine-id", (err, content)->
+      cb(err, if content then content.toString())
   catch e
     defaultUuid cb
 
