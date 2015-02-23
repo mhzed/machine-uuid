@@ -10,7 +10,7 @@
 
   uuid = void 0;
 
-  uuidRegex = /\w{8}\-\w{4}\-\w{4}\-\w{4}\-\w{11}/;
+  uuidRegex = /\w{8}\-\w{4}\-\w{4}\-\w{4}\-\w{12}/;
 
   module.exports = function(cb) {
     var platFormSpecific, platformGetUuid;

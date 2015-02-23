@@ -5,7 +5,7 @@ crypto  = require('crypto')
 
 uuid      = undefined
 
-uuidRegex = /\w{8}\-\w{4}\-\w{4}\-\w{4}\-\w{11}/
+uuidRegex = /\w{8}\-\w{4}\-\w{4}\-\w{4}\-\w{12}/
 
 module.exports = (cb)->
 
