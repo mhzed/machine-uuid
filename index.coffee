@@ -1,7 +1,6 @@
 
 {exec}  = require("child_process")
 os      = require("os")
-crypto  = require('crypto')
 
 uuid      = undefined
 
