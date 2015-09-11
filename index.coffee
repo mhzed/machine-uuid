@@ -29,7 +29,12 @@ linuxUuid = (cb)->
   try
     fs = require("fs")
     uuid = fs.readFile "/var/lib/dbus/machine-id", (err, content)->
-      cb(err, if content then content.toString())
+      if content  # clean, add - and remove whitespace
+        uuid = content.toString().replace /\s+/, ''
+        if (not /\-/.test uuid) and uuid.length > 20
+          uuid = uuid[0...8] + '-' + uuid[8...12] + '-' + uuid[12...16] + '-' + uuid[16...20] + '-' + uuid[20...]
+
+      cb(err, if content then uuid)
   catch e
     defaultUuid cb
 

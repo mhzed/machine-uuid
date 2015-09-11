@@ -42,7 +42,13 @@
     try {
       fs = require("fs");
       return uuid = fs.readFile("/var/lib/dbus/machine-id", function(err, content) {
-        return cb(err, content ? content.toString() : void 0);
+        if (content) {
+          uuid = content.toString().replace(/\s+/, '');
+          if ((!/\-/.test(uuid)) && uuid.length > 20) {
+            uuid = uuid.slice(0, 8) + '-' + uuid.slice(8, 12) + '-' + uuid.slice(12, 16) + '-' + uuid.slice(16, 20) + '-' + uuid.slice(20);
+          }
+        }
+        return cb(err, content ? uuid : void 0);
       });
     } catch (_error) {
       e = _error;
