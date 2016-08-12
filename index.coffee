@@ -6,7 +6,11 @@ uuid      = undefined
 
 uuidRegex = /\w{8}\-\w{4}\-\w{4}\-\w{4}\-\w{12}/
 
-module.exports = (cb)->
+defaultUuidFolder = __dirname
+
+module.exports = (cb, filepath)->
+
+  if filepath then defaultUuidFolder = filepath
 
   if uuid then return setImmediate ()->cb(uuid)
   platFormSpecific = {
@@ -55,7 +59,7 @@ winUuid = (cb)->
 defaultUuid = (cb)->
   path = require "path"
   fs = require "fs"
-  f = path.resolve(__dirname, '.nodemid')
+  f = path.resolve(defaultUuidFolder, '.nodemid')
   if fs.existsSync(f)
     cb(fs.readFileSync(f).toString())
   else
