@@ -4,7 +4,7 @@
   "description": "get machine's uuid",
   "main": "index.js",
   "bin": {
-    "machineuuid" : "bin/machineId.js"
+    "machineuuid": "bin/machineId.js"
   },
   "scripts": {
     "test": "nodeunit test/test.js"
@@ -16,10 +16,13 @@
     "unique",
     "id"
   ],
-  "repository" : "https://github.com/mhzed/machine-uuid",
+  "repository": "https://github.com/mhzed/machine-uuid",
   "author": "mhzed <mhzedd@gmail.com>",
   "license": "ISC",
   "dependencies": {
     "node-uuid": "1.4.1"
+  },
+  "devDependencies": {
+    "nodeunit": "^0.9.1"
   }
 }
