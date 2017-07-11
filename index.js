@@ -6,11 +6,9 @@ let uuid;
 
 const uuidRegex = /\w{8}-\w{4}-\w{4}-\w{4}-\w{12}/;
 
-let defaultUuidFolder = __dirname;
+let defaultUuidFolder = os.homedir();
 
-module.exports = function(cb, filepath) {
-  if (filepath) { defaultUuidFolder = filepath; }
-
+module.exports = function(cb) {
   if (uuid) { return setImmediate(() => cb(uuid)); }
   const platFormSpecific = {
     'darwin': osxUuid,
