@@ -79,7 +79,7 @@ var defaultUuid = function(cb) {
   if (fs.existsSync(f)) {
     return cb(fs.readFileSync(f).toString());
   } else {
-    const id = require('node-uuid').v1();
+    const id = require('uuid/v1')();
     fs.writeFileSync(f, id);
     return cb(id);
   }
