@@ -6,7 +6,7 @@ $homedir/.nodemid
 
 ## Install
 
-npm install machine-uuid
+npm install machine-uuid --save
 
 ## Basic example
 
@@ -14,4 +14,7 @@ npm install machine-uuid
       console.log(uuid)
     })
 
+    # Or using Promise
+    const machineUuid = require("machine-uuid")
+    machineUuid().then((uuid)=>console.log(uuid))
 
