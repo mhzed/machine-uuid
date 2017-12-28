@@ -1,7 +1,9 @@
 
 const {exec} = require("child_process");
 const os = require("os");
-
+const fs = require("fs");
+const path = require("path");
+const UUID = require('uuid');
 let uuid;
 
 const uuidRegex = /\w{8}-\w{4}-\w{4}-\w{4}-\w{12}/;
@@ -16,8 +18,6 @@ module.exports = function(cb) {
   } 
   else machineUuid(cb);
 }
-
-
 
 function machineUuid(cb) {
   if (uuid) { return setImmediate(() => cb(uuid)); }
@@ -43,7 +43,7 @@ function machineUuid(cb) {
 
 var linuxUuid = function(cb) {
   try {
-    const fs = require("fs");
+    
     uuid = fs.readFile("/var/lib/dbus/machine-id", function(err, content) {
       if (content) {  // clean, add - and remove whitespace
         uuid = content.toString().replace(/\s+/, '');
@@ -84,13 +84,11 @@ var winUuid = cb =>
 ;
 
 var defaultUuid = function(cb) {
-  const path = require("path");
-  const fs = require("fs");
   const f = path.resolve(defaultUuidFolder, '.nodemid');
   if (fs.existsSync(f)) {
     return cb(fs.readFileSync(f).toString());
   } else {
-    const id = require('node-uuid').v1();
+    const id = UUID.v1();
     fs.writeFileSync(f, id);
     return cb(id);
   }
